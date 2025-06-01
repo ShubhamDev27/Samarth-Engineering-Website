@@ -1750,17 +1750,17 @@ img {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   .header-style-1 .navigation, .header-style-2 .navigation, .header-style-3 .navigation {
-    background:#171762;;
+    background: #f4f4f41c;;
   }
   .header-style-1 .navbar-nav, .header-style-2 .navbar-nav, .header-style-3 .navbar-nav {
     margin-left: 60px;
   }
   .header-style-1 #navbar > ul > li > a, .header-style-2 #navbar > ul > li > a, .header-style-3 #navbar > ul > li > a {
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 20px;
+    font-size: 1rem;
     font-weight: 500;
-    color: #fff;
-    padding: 45px 15px;
+    color: #ffffff;
+    padding: 50px 20px;
     text-transform: uppercase;
   }
 }
@@ -1796,7 +1796,7 @@ img {
 }
 
 .header-style-1 .navbar-brand img, .header-style-2 .navbar-brand img, .header-style-3 .navbar-brand img {
-  max-width: 165px;
+  max-width: 200px;
 }
 
 .header-style-1 .search-contact, .header-style-2 .search-contact, .header-style-3 .search-contact {
