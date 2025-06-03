@@ -1796,7 +1796,7 @@ img {
 }
 
 .header-style-1 .navbar-brand img, .header-style-2 .navbar-brand img, .header-style-3 .navbar-brand img {
-  max-width: 200px;
+  max-width: 150px;
 }
 
 .header-style-1 .search-contact, .header-style-2 .search-contact, .header-style-3 .search-contact {
