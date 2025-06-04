@@ -92,13 +92,13 @@
                                 </a>
                             </li>
 
-                             <!-- <li>
+                            <!-- <li>
                                 <a href="#" id="downloadpCatalog" class="download-btn">
                                     Download<br> Product Catalog
                                 </a>
                             </li> -->
 
-                        
+
 
                         </ul>
                     </div><!-- end of nav-collapse -->
@@ -140,16 +140,17 @@
                         <div class="slide-inner slide-bg-image" data-background="assets/images/slider/s_1.jpg">
                             <div class="container">
                                 <div data-swiper-parallax="300" class="slide-title">
-                                    <h2 style="color: rgb(234, 233, 235);"><b></b>Welcome to Samarth Engineering Works</h2>
+                                    <h2 style="color: rgb(234, 233, 235);"><b></b>Welcome to Samarth Engineering Works
+                                    </h2>
                                 </div>
                                 <div data-swiper-parallax="400" class="slide-text">
 
                                 </div>
                                 <div class="clearfix"></div>
                                 <div data-swiper-parallax="500" class="slide-btns">
-                                    
-                                 
-                                    
+
+
+
                                     <!-- <a href="#" class="theme-btn">Our services</a> -->
                                     <a href="https://wa.me/918421603755" target="_blank" style="
                                        background-color: #25D366;
@@ -178,10 +179,10 @@
                                     <h2 style="color: white;">Welcome to Samarth Engineering Works</h2>
                                 </div>
 
-                                
+
                                 <div data-swiper-parallax="400" class="slide-text">
-                                     
-                                    
+
+
                                     <!-- <a href="#" class="theme-btn">Our services</a> -->
                                     <a href="https://wa.me/918421603755" target="_blank" style="
                                        background-color: #25D366;
@@ -194,7 +195,7 @@
                                        ">
                                         💬 Chat with us on WhatsApp
                                     </a>
-                                     <!-- <a href="#" id="downloadCatalog" class="theme-btn">Download Catalog</a> -->
+                                    <!-- <a href="#" id="downloadCatalog" class="theme-btn">Download Catalog</a> -->
 
                                 </div>
 
@@ -213,7 +214,7 @@
         <!-- end of hero slider -->
 
 
-     
+
 
 
         <!-- start-product-section -->
@@ -239,9 +240,9 @@
                                     <div class="img-holder">
                                         <img src="assets/images/P_1.jpeg" alt>
                                     </div>
-                                    <div class="social">
+                                    <!-- <div class="social">
 
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="details">
                                     <h3>Design-1</h3>
@@ -354,7 +355,7 @@
         </section>
         <!-- end team-section -->
 
-           <!-- start about-us-section -->
+        <!-- start about-us-section -->
         <section class="about-us-section section-padding">
             <div class="container">
                 <div class="row">
@@ -395,11 +396,12 @@
                             <div class="img-holder">
                                 <img src="assets/images/logo_1.png" alt>
                             </div>
-                            <!-- <div class="video-holder">
-                                <a href="https://www.youtube.com/embed/7e90gBu4pas?autoplay=1"
-                                    class="hero-video-btn video-btn" data-type="iframe" tabindex="0"><i
-                                        class="fi flaticon-play-button"></i>Watch our intro video</a>
-                            </div> -->
+
+                            <div class="video-holder">
+                                <a href="https://www.youtube.com/watch?v=92EQK8DYi3U" target="_blank">
+                                    Watch on YouTube
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -543,11 +545,13 @@
                                 <i class="fi flaticon-call"></i>
                                 <h4>Call us</h4>
                                 <p><a href="tel:+918421603755"
-                                        style="text-decoration: none; color: inherit;">+918421603755<br>+919307997553</a></p>
+                                        style="text-decoration: none; color: inherit;">+918421603755<br>+919307997553</a>
+                                </p>
                                 <i class="fi flaticon-contact"></i>
                                 <h4>Email us</h4>
                                 <p><a href="mailto:demo@example.com"
-                                        style="text-decoration: none; color: inherit;">samarthengineerning5534@gmail.com<br>Anil Kadolkar<br>Anikesh Kadolkar</a>
+                                        style="text-decoration: none; color: inherit;">samarthengineerning5534@gmail.com<br>Anil
+                                        Kadolkar<br>Anikesh Kadolkar</a>
                                 </p>
                             </div>
                         </div>
@@ -675,59 +679,59 @@
     </div>
     <!-- end of page-wrapper -->
 
-<script>
-/**
- *  Download Catalog & cache it in localStorage
- *  – First click: fetches PDF → stores as data-URL → downloads
- *  – Later clicks: pulls from cache → downloads instantly
- */
-(function () {
-    const CATALOG_URL   = 'assets/docs/SAMARTH LASER CATLOG.pdf';           // server file
-    const CACHE_KEY     = 'samarthCatalogPdf';                 // localStorage key
-    const FILE_NAME     = 'Samarth_Laser_Catalog.pdf';   // download name
+    <script>
+        /**
+         *  Download Catalog & cache it in localStorage
+         *  – First click: fetches PDF → stores as data-URL → downloads
+         *  – Later clicks: pulls from cache → downloads instantly
+         */
+        (function () {
+            const CATALOG_URL = 'assets/docs/SAMARTH LASER CATLOG.pdf';           // server file
+            const CACHE_KEY = 'samarthCatalogPdf';                 // localStorage key
+            const FILE_NAME = 'Samarth_Laser_Catalog.pdf';   // download name
 
-    const link = document.getElementById('downloadCatalog');
-    if (!link) return; // safety
+            const link = document.getElementById('downloadCatalog');
+            if (!link) return; // safety
 
-    link.addEventListener('click', async (e) => {
-        e.preventDefault();
+            link.addEventListener('click', async (e) => {
+                e.preventDefault();
 
-        // if we already cached the file, use it
-        let dataUrl = localStorage.getItem(CACHE_KEY);
-        if (!dataUrl) {
-            try {
-                const blob = await fetch(CATALOG_URL).then(r => r.blob());
-                dataUrl = await blobToDataURL(blob);
-                localStorage.setItem(CACHE_KEY, dataUrl);
-            } catch (err) {
-                console.error('Catalog download failed:', err);
-                alert('Sorry, the catalog could not be downloaded right now.');
-                return;
+                // if we already cached the file, use it
+                let dataUrl = localStorage.getItem(CACHE_KEY);
+                if (!dataUrl) {
+                    try {
+                        const blob = await fetch(CATALOG_URL).then(r => r.blob());
+                        dataUrl = await blobToDataURL(blob);
+                        localStorage.setItem(CACHE_KEY, dataUrl);
+                    } catch (err) {
+                        console.error('Catalog download failed:', err);
+                        alert('Sorry, the catalog could not be downloaded right now.');
+                        return;
+                    }
+                }
+
+                triggerDownload(dataUrl, FILE_NAME);
+            });
+
+            // === helpers ===
+            function blobToDataURL(blob) {
+                return new Promise((res) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => res(reader.result);
+                    reader.readAsDataURL(blob);
+                });
             }
-        }
 
-        triggerDownload(dataUrl, FILE_NAME);
-    });
-
-    // === helpers ===
-    function blobToDataURL(blob) {
-        return new Promise((res) => {
-            const reader = new FileReader();
-            reader.onloadend = () => res(reader.result);
-            reader.readAsDataURL(blob);
-        });
-    }
-
-    function triggerDownload(dataUrl, filename) {
-        const a = document.createElement('a');
-        a.href = dataUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-    }
-})();
-</script>
+            function triggerDownload(dataUrl, filename) {
+                const a = document.createElement('a');
+                a.href = dataUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            }
+        })();
+    </script>
 
 
 
