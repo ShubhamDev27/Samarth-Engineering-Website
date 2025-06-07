@@ -87,7 +87,7 @@
                             <li><a href="tel:+918421603755" class="call-button">📞 Call Us</a></li>
 
                             <li>
-                                <a href="assets/docs/SAMARTH_LASER_CATLOG.pdf" id="downloadCatalog" class="download-btn">
+                                <a href="#" id="downloadCatalog" class="download-btn">
                                     Download<br>Laser Catalog
                                 </a>
                             </li>
@@ -680,58 +680,66 @@
     <!-- end of page-wrapper -->
 
     <script>
-        /**
-         *  Download Catalog & cache it in localStorage
-         *  – First click: fetches PDF → stores as data-URL → downloads
-         *  – Later clicks: pulls from cache → downloads instantly
-         */
-        (function () {
-            const CATALOG_URL = 'assets/docs/SAMARTH LASER CATLOG.pdf';           // server file
-            const CACHE_KEY = 'samarthCatalogPdf';                 // localStorage key
-            const FILE_NAME = 'Samarth_Laser_Catalog.pdf';   // download name
+    /**
+     * Download Catalog & cache it in localStorage
+     * – First click: fetches PDF → stores as data-URL → downloads
+     * – Later clicks: pulls from cache → downloads instantly
+     */
+    (function () {
+        const CATALOG_URL = 'assets/docs/SAMARTH_LASER_CATLOG.pdf'; // ✅ fixed filename (use underscores or URL-encoded spaces)
+        const CACHE_KEY = 'samarthCatalogPdf';                      // localStorage key
+        const FILE_NAME = 'Samarth_Laser_Catalog.pdf';              // download name
 
-            const link = document.getElementById('downloadCatalog');
-            if (!link) return; // safety
+        const link = document.getElementById('downloadCatalog');
+        if (!link) return;
 
-            link.addEventListener('click', async (e) => {
-                e.preventDefault();
+        link.addEventListener('click', async (e) => {
+            e.preventDefault();
 
-                // if we already cached the file, use it
-                let dataUrl = localStorage.getItem(CACHE_KEY);
-                if (!dataUrl) {
-                    try {
-                        const blob = await fetch(CATALOG_URL).then(r => r.blob());
-                        dataUrl = await blobToDataURL(blob);
-                        localStorage.setItem(CACHE_KEY, dataUrl);
-                    } catch (err) {
-                        console.error('Catalog download failed:', err);
-                        alert('Sorry, the catalog could not be downloaded right now.');
-                        return;
+            let dataUrl = localStorage.getItem(CACHE_KEY);
+            if (!dataUrl) {
+                try {
+                    const response = await fetch(CATALOG_URL);
+                    if (!response.ok) throw new Error("PDF not found or failed to load");
+                    
+                    const blob = await response.blob();
+
+                    // ✅ Ensure it's actually a PDF
+                    if (blob.type !== 'application/pdf') {
+                        throw new Error("Fetched file is not a valid PDF");
                     }
+
+                    dataUrl = await blobToDataURL(blob);
+                    localStorage.setItem(CACHE_KEY, dataUrl);
+                } catch (err) {
+                    console.error('Catalog download failed:', err);
+                    alert('Sorry, the catalog could not be downloaded right now.');
+                    return;
                 }
+            }
 
-                triggerDownload(dataUrl, FILE_NAME);
+            triggerDownload(dataUrl, FILE_NAME);
+        });
+
+        // === Helpers ===
+        function blobToDataURL(blob) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.readAsDataURL(blob);
             });
+        }
 
-            // === helpers ===
-            function blobToDataURL(blob) {
-                return new Promise((res) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => res(reader.result);
-                    reader.readAsDataURL(blob);
-                });
-            }
-
-            function triggerDownload(dataUrl, filename) {
-                const a = document.createElement('a');
-                a.href = dataUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            }
-        })();
-    </script>
+        function triggerDownload(dataUrl, filename) {
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+    })();
+</script>
 
 
 
